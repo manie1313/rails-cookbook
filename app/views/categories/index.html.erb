@@ -1,0 +1,8 @@
+<%# <h1>Categories#index</h1>
+<p>Find me in app/views/categories/index.html.erb</p> %>
+<h1>Food Categories:</h1>
+<ol>
+  <% @categories.each do |item| %>
+    <li><%= link_to item.name, category_path(item) %></li>
+  <% end %>
+</ol>
