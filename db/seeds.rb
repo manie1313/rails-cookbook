@@ -13,11 +13,11 @@ puts "Cleaning DB"
 Recipe.destroy_all
 puts"DB cleaned"
 
-n = 4
+n = 10
 puts "Creating #{n} fake movies with Faker"
 n.times do
   new_recipe = Recipe.create!(
-    name: Faker::Food.dish,
+    name: Faker::Food.unique.dish,
     description: Faker::Food.description,
     image_url: Faker::Internet.url,
     # rating: Faker::Number.decimal(l_digits: 1)

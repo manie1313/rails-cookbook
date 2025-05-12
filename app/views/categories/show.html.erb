@@ -6,8 +6,9 @@
 
 <ul>
   <% @category.bookmarks.each do |bookmark| %>
-  <p><strong><%= bookmark.recipe.name %></strong></p>
-  <p><em><%= bookmark.comment %></em></p>
+    <p><strong><%= bookmark.recipe.name %></strong></p>
+    <p><em><%= bookmark.comment %></em></p>
+    <%= button_to "Delete", bookmark_path(bookmark), method: :delete, data: { turbo_confirm: "Are you sure?" }  %>
   <% end %>
   </ul>
 
