@@ -3,3 +3,13 @@
 
 <h1>Food Category:</h1>
 <h2><%= @category.name %></h2>
+
+<ul>
+  <% @category.bookmarks.each do |bookmark| %>
+  <p><strong><%= bookmark.recipe.name %></strong></p>
+  <p><em><%= bookmark.comment %></em></p>
+  <% end %>
+  </ul>
+
+<p><%= link_to "Add a recipe", new_category_bookmark_path(@category) %></p>
+<p><%= link_to "Back to Categories", categories_path %></p>
