@@ -1,12 +1,28 @@
-.navbar-lewagon {
-  justify-content: space-between;
-  background: white;
-}
+// .navbar-lewagon {
+//   justify-content: space-between;
+//   background: white;
+// }
 
-.navbar-lewagon .navbar-collapse {
-  flex-grow: 0;
-}
+// .navbar-lewagon .navbar-collapse {
+//   flex-grow: 0;
+// }
 
-.navbar-lewagon .navbar-brand img {
-  width: 40px;
+// .navbar-lewagon .navbar-brand img {
+//   width: 40px;
+// }
+
+.navbar {
+  background-color: white;
+  // padding top-bottom left-right
+  padding: 5px 20px;
+  img {
+    width: 80px;
+  }
+
+  a {
+    color: black;
+    &:hover {
+      color: rgb(134, 39, 4);
+    }
+  }
 }

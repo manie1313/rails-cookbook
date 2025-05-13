@@ -1,1 +1,14 @@
-// Specific CSS for your home-page
+// Specific for your home-page
+.info-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 40px 0px;
+
+  a {
+    color: rgb(255, 255, 255);
+    &:hover {
+      color: rgba(128, 128, 128, 0.966) ;
+    }
+  }
+}

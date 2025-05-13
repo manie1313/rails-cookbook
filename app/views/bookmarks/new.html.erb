@@ -1,5 +1,6 @@
-<h1>Add a recipe to  <%= @category.name %></h1>
-
+<div>
+  <h1>Add a recipe to  <%= @category.name %></h1>
+</div>
 <%= simple_form_for [@category, @bookmark] do |f| %>
   <%= f.association :recipe, collection: @recipes, prompt: "Select a recipe" %>
   <%= f.input :comment, placeholder: "Type in your comment" %>

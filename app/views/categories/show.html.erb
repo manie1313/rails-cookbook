@@ -1,16 +1,55 @@
 <%# <h1>Categories#show</h1>
 <p>Find me in app/views/categories/show.html.erb</p> %>
+<div class="banner" style = "background-image: url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg)">
+  <div>
+    <h1><%= @category.name %></h1>
+    <h3>Save your favorites recipes</h3>
+  </div>
+</div>
 
-<h1>Food Category:</h1>
-<h2><%= @category.name %></h2>
+<div class="container w-75">
+  <div class="info-top">
+    <h2>Recipes</h2>
+    <%# we pass @category inside the path new_category_bookmark_path() bcz the id is dynamic %>
+    <%= link_to "Add a recipe", new_category_bookmark_path(@category), class: "btn btn-warning" %>
+  </div>
 
-<ul>
-  <% @category.bookmarks.each do |bookmark| %>
-    <p><strong><%= bookmark.recipe.name %></strong></p>
-    <p><em><%= bookmark.comment %></em></p>
-    <%= button_to "Delete", bookmark_path(bookmark), method: :delete, data: { turbo_confirm: "Are you sure?" }  %>
-  <% end %>
-  </ul>
+  <div class="cards">
+    <% @category.bookmarks.each do |bookmark| %>
+      <div class= "card-trip">
+        <img src="<%= bookmark.recipe.image_url %>" alt="">
 
-<p><%= link_to "Add a recipe", new_category_bookmark_path(@category) %></p>
-<p><%= link_to "Back to Categories", categories_path %></p>
+        <%= link_to '🗑️', bookmark_path(bookmark),
+          data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+          class: 'btn-delete' %>
+
+        <div class="card-trip-description">
+          <h3><strong><%= bookmark.recipe.name %></strong></h3>
+          <p><%= bookmark.recipe.description.truncate(100) %></p>
+        </div>
+
+        <div class="card-trip-infos">
+          <div>
+            <p><em><%= bookmark.comment %></em></p>
+          </div>
+
+          <div>
+            <%= bookmark.recipe.rating.round(1) %> <%= '⭐' * bookmark.recipe.rating.floor %>
+          </div>
+
+        </div>
+      </div>
+    <% end %>
+  </div>
+ </div>
+
+    <%# <%= button_to "Delete", bookmark_path(bookmark), method: :delete, data: { turbo_confirm: "Are you sure?" }  %>
+
+
+
+
+
+<%# <h1>Food Category:</h1> %>
+<%# <h2><%= @category.name %>
+<%#
+<p><%= link_to "Back to Categories", categories_path %>
