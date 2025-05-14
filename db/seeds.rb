@@ -8,26 +8,46 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 require 'faker'
+require 'open-uri'
+require 'json'
 
 puts "Cleaning DB"
-Recipe.destroy_all
+# Recipe.destroy_all
 puts"DB cleaned"
 
-n = 10
-puts "Creating #{n} fake movies with Faker"
-n.times do
-  new_recipe = Recipe.create!(
-    name: Faker::Food.unique.dish,
-    description: Faker::Food.description,
-    image_url: Faker::Internet.url,
-    # rating: Faker::Number.decimal(l_digits: 1)
-    # this rating apparently doesn t work because it doesn t match the validation
-    # that s a good sign bcz it means the validation works
-    # the msg error is => ActiveRecord::RecordInvalid: Validation failed:
-    # Rating is not included in the list (ActiveRecord::RecordInvalid)
-    rating: rand(0..5.0)
-  )
-   puts "Recipe #{new_recipe.id} created"
+# n = 10
+# puts "Creating #{n} fake movies with Faker"
+# n.times do
+#   new_recipe = Recipe.create!(
+#     name: Faker::Food.unique.dish,
+#     description: Faker::Food.description,
+#     image_url: Faker::Internet.url,
+#     # rating: Faker::Number.decimal(l_digits: 1)
+#     # this rating apparently doesn t work because it doesn t match the validation
+#     # that s a good sign bcz it means the validation works
+#     # the msg error is => ActiveRecord::RecordInvalid: Validation failed:
+#     # Rating is not included in the list (ActiveRecord::RecordInvalid)
+#     rating: rand(0..5.0)
+#   )
+#    puts "Recipe #{new_recipe.id} created"
+# end
+# puts "Finished! #{Recipe.count} created"
+
+def method_name
+  url = "https://www.themealdb.com/api/json/v1/1/lookup.php?i=ID"
 end
 
-puts "Finished! #{Recipe.count} created"
+
+categories = ["Vegetarian", "Pasta", "Seafood", "Dessert"]
+
+
+categories.each do |category|
+  url = "https://www.themealdb.com/api/json/v1/1/filter.php?c=#{category}"
+  recipe_list = URI.parse(url).read
+ recipes = JSON.parse( recipe_list)
+  p recipes["meals"].take(5).each do |recipe|
+    p recipe["idMeal"]
+
+end
+
+ puts "#{Recipe.count} recipes created"
