@@ -1,10 +1,13 @@
 <%# <h1>Categories#new</h1>
 <p>Find me in app/views/categories/new.html.erb</p> %>
 
-<h1>Add a category:</h1>
-<%= simple_form_for @category do |f| %>
-  <%= f.input :name %>
-  <%= f.submit "create a category", class: "btn btn-primary" %>
+<div class= '_form_new mt-5'>
+  <h1>Add a new category</h1>
+
+  <%= simple_form_for @category do |f| %>
+  <%= f.input :name, placeholder: "The category name..." %>
+  <%= f.submit, class: "btn btn-info" %>
 <% end %>
 
-<%= link_to "Home category", categories_path %>
+<%# <%= link_to "Home category", categories_path %> %>
+</div>

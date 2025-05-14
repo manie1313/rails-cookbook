@@ -19,9 +19,11 @@
       <div class= "card-trip">
         <img src="<%= bookmark.recipe.image_url %>" alt="">
 
-        <%= link_to '🗑️', bookmark_path(bookmark),
+        <%= link_to bookmark_path(bookmark),
           data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
-          class: 'btn-delete' %>
+          class: 'btn-delete' do %>
+          <i class="fa-solid fa-trash"></i>
+          <% end %>
 
         <div class="card-trip-description">
           <h3><strong><%= bookmark.recipe.name %></strong></h3>
