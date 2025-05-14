@@ -6,6 +6,7 @@ ruby "3.3.5"
 
 gem 'faker'
 gem "dotenv-rails"
+gem "cloudinary"
 
 gem "bootstrap", "~> 5.2"
 gem "autoprefixer-rails"
