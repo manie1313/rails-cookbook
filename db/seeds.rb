@@ -12,7 +12,9 @@ require 'open-uri'
 require 'json'
 
 puts "Cleaning DB"
-# Recipe.destroy_all
+Bookmark.destroy_all
+Recipe.destroy_all
+Category.destroy_all
 puts"DB cleaned"
 
 # n = 10
@@ -33,8 +35,21 @@ puts"DB cleaned"
 # end
 # puts "Finished! #{Recipe.count} created"
 
-def method_name
-  url = "https://www.themealdb.com/api/json/v1/1/lookup.php?i=ID"
+def recipe_builder(id)
+  url = "https://www.themealdb.com/api/json/v1/1/lookup.php?i=#{id}"
+  meal_serialized = URI.parse(url).read
+  meal = JSON.parse(meal_serialized)["meals"][0]
+  # p meals["strInstructions"]
+  # because it s a hash, all the info about meal ==> straight away ==>   p JSON.parse(meal_serialized)["meals"][0]
+  #   then we can do p meal["strMeal"]
+  #     don t forget rails db:seed each time
+
+  Recipe.create!(
+    name: meal["strMeal"],
+    description: meal["strInstructions"],
+    image_url: meal["strMealThumb"],
+    rating: rand(2..5.0).round(1)
+  )
 end
 
 
@@ -44,10 +59,11 @@ categories = ["Vegetarian", "Pasta", "Seafood", "Dessert"]
 categories.each do |category|
   url = "https://www.themealdb.com/api/json/v1/1/filter.php?c=#{category}"
   recipe_list = URI.parse(url).read
- recipes = JSON.parse( recipe_list)
-  p recipes["meals"].take(5).each do |recipe|
-    p recipe["idMeal"]
-
+  recipes = JSON.parse(recipe_list)
+  recipes["meals"].take(5).each do |recipe|
+    # p recipe["idMeal"]
+    recipe_builder(recipe["idMeal"])
+  end
 end
 
  puts "#{Recipe.count} recipes created"
