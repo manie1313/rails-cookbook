@@ -12,6 +12,7 @@ class CategoriesController < ApplicationController
   end
 
   def create
+    # raise
     @category = Category.new(strong_params)
     @category.name = @category.name.capitalize
 
@@ -25,7 +26,7 @@ class CategoriesController < ApplicationController
   private
 
   def strong_params
-    params.require(:category).permit(:name)
+    params.require(:category).permit(:name, :photo)
   end
 
 end

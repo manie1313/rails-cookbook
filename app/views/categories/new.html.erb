@@ -6,8 +6,9 @@
 
   <%= simple_form_for @category do |f| %>
   <%= f.input :name, placeholder: "The category name..." %>
-  <%= f.submit, class: "btn btn-info" %>
+   <%= f.input :photo %>
+  <%= f.submit class: "btn btn-info" %>
 <% end %>
 
-<%# <%= link_to "Home category", categories_path %> %>
+<%= link_to "Home category", categories_path %>
 </div>

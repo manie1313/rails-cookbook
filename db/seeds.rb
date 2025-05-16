@@ -53,17 +53,17 @@ def recipe_builder(id)
 end
 
 
-categories = ["Vegetarian", "Pasta", "Seafood", "Dessert"]
+# categories = ["Vegetarian", "Pasta", "Seafood", "Dessert"]
 
 
-categories.each do |category|
-  url = "https://www.themealdb.com/api/json/v1/1/filter.php?c=#{category}"
-  recipe_list = URI.parse(url).read
-  recipes = JSON.parse(recipe_list)
-  recipes["meals"].take(5).each do |recipe|
-    # p recipe["idMeal"]
-    recipe_builder(recipe["idMeal"])
-  end
-end
+# categories.each do |category|
+#   url = "https://www.themealdb.com/api/json/v1/1/filter.php?c=#{category}"
+#   recipe_list = URI.parse(url).read
+#   recipes = JSON.parse(recipe_list)
+#   recipes["meals"].take(5).each do |recipe|
+#     # p recipe["idMeal"]
+#     recipe_builder(recipe["idMeal"])
+#   end
+# end
 
  puts "#{Recipe.count} recipes created"

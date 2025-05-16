@@ -7,9 +7,11 @@ local:
   root: <%= Rails.root.join("storage") %>
 
 # ADDED
+# msg error: undefined method `fetch' for nil in ruby rails for controller
+# because I didn t indented service and folder so my active record was empty
 cloudinary:
-service: Cloudinary
-folder: <%= Rails.env %>
+  service: Cloudinary
+  folder: <%= Rails.env %>
 
 # Use bin/rails credentials:edit to set the AWS secrets (as aws:access_key_id|secret_access_key)
 # amazon:

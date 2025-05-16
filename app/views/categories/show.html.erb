@@ -1,6 +1,6 @@
 <%# <h1>Categories#show</h1>
 <p>Find me in app/views/categories/show.html.erb</p> %>
-<div class="banner" style = "background-image: url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg)">
+<div class="banner" style = "background-image: url(<%= cl_image_path @category.photo.key %>); background-position: bottom;">
   <div>
     <h1><%= @category.name %></h1>
     <h3>Save your favorites recipes</h3>
